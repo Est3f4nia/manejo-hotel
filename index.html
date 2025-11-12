@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas - Hotel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Hotel Premium</div>
+            <nav id="nav">
+                <ul id="navMenu">
+                </ul>
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <span>Bienvenido: <strong id="userName"></strong></span>
+                    <span class="user-badge" id="userRole"></span>
+                    <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="mainContent">
+        <div id="authView" class="auth-container">
+            <form class="auth-form" id="authForm">
+                <h2 id="authTitle">Iniciar Sesión</h2>
+                
+                <div id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email:</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña:</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <div class="form-toggle">
+                        ¿No tienes cuenta? <a onclick="toggleAuthForm()">Regístrate aquí</a>
+                    </div>
+                </div>
+
+                <div id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Nombre:</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email:</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña:</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                    <div class="form-toggle">
+                        ¿Ya tienes cuenta? <a onclick="toggleAuthForm()">Inicia sesión aquí</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="appView" style="display: none;">
+            <div id="roomsView" style="display: none;">
+                <div class="container">
+                    <div class="rooms-section">
+                        <h2>Habitaciones Disponibles</h2>
+                        <div id="roomsContainer" class="rooms-grid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reservationsView" style="display: none;">
+                <div class="container">
+                    <div class="reservations-section">
+                        <h2>Mis Reservas</h2>
+                        <div id="alertContainer"></div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Habitación</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reservationsBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dashboardView" style="display: none;">
+                <div class="container">
+                    <h1 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">Dashboard</h1>
+                    
+                    <div class="dashboard">
+                        <div class="dashboard-card">
+                            <h3>Total Habitaciones</h3>
+                            <div class="number" id="totalRooms">0</div>
+                        </div>
+                        <div class="dashboard-card success">
+                            <h3>Reservas Confirmadas</h3>
+                            <div class="number" id="confirmedReservations">0</div>
+                        </div>
+                        <div class="dashboard-card warning">
+                            <h3>Reservas Pendientes</h3>
+                            <div class="number" id="pendingReservations">0</div>
+                        </div>
+                        <div class="dashboard-card danger">
+                            <h3>Reservas Canceladas</h3>
+                            <div class="number" id="cancelledReservations">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nueva Reserva</h2>
+                <button type="button" class="close-modal" onclick="closeModal('reservationModal')">&times;</button>
+            </div>
+            <form id="reservationForm" class="modal-body">
+                <div class="form-group">
+                    <label for="reservationRoomId">Habitación:</label>
+                    <input type="text" id="reservationRoomId" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="reservationCheckIn">Check-in:</label>
+                    <input type="date" id="reservationCheckIn" required>
+                </div>
+                <div class="form-group">
+                    <label for="reservationCheckOut">Check-out:</label>
+                    <input type="date" id="reservationCheckOut" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('reservationModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Hotel Premium - Sistema de Reservas</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
